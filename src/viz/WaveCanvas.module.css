@@ -1,0 +1,14 @@
+.canvas,
+.compact {
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.canvas {
+  height: 400px;
+}
+
+.compact {
+  height: 80px;
+}

@@ -1,0 +1,38 @@
+.panel {
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  border: 1px solid rgba(74, 243, 200, 0.12);
+}
+
+.header h3 {
+  margin: 0;
+}
+
+.header p {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.slider {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.slider span,
+.slider strong {
+  font-family: 'Space Mono', monospace;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

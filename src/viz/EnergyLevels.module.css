@@ -1,0 +1,23 @@
+.panel {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.panel h3 {
+  margin: 0 0 0.85rem;
+}
+
+.list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Space Mono', monospace;
+  padding: 0.55rem 0.7rem;
+  border-radius: 12px;
+  background: rgba(143, 216, 255, 0.05);
+}

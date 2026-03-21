@@ -1,0 +1,323 @@
+.appShell {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(74, 243, 200, 0.1), transparent 30%),
+    radial-gradient(circle at 80% 20%, rgba(243, 156, 74, 0.12), transparent 24%),
+    linear-gradient(180deg, #04060d 0%, #080d15 100%);
+}
+
+.backgroundNoise,
+.gridOverlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.backgroundNoise {
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.85'/%3E%3C/svg%3E");
+}
+
+.gridOverlay {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.intro,
+.selection,
+.playPhase {
+  position: relative;
+  z-index: 1;
+}
+
+.intro {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: 0.6rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.intro p {
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(1.2rem, 3vw, 2.8rem);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: rise 0.9s forwards;
+}
+
+.selection,
+.playPhase {
+  padding: 2rem;
+}
+
+.selectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.selectionHeader span,
+.kicker,
+.secondaryTabs span {
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-size: 0.78rem;
+}
+
+.selectionHeader h1,
+.topBar h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.topBar,
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.topBar {
+  margin-bottom: 1.4rem;
+}
+
+.backButton,
+.compareButton,
+.collapseButton,
+.compareTab,
+.activeCompareTab {
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(74, 243, 200, 0.24);
+  background: rgba(10, 18, 27, 0.72);
+  box-shadow: var(--shadow-accent);
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.backButton:hover,
+.compareButton:hover,
+.compareTab:hover,
+.activeCompareTab:hover,
+.collapseButton:hover {
+  transform: translateY(-2px);
+  border-color: rgba(74, 243, 200, 0.6);
+}
+
+.mainLayout,
+.compareLayout {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.mainLayout {
+  grid-template-columns: minmax(0, 1fr) 340px;
+}
+
+.compareLayout {
+  grid-template-columns: minmax(0, 1fr) 340px;
+}
+
+.stageColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.canvasWrap,
+.compareCanvasWrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.compareCanvasWrap {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.canvasPanel,
+.sidePanel,
+.sideCollapsed,
+.metricCard,
+.secondaryTabs {
+  background: var(--panel);
+  border: 1px solid rgba(74, 243, 200, 0.12);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(14px);
+}
+
+.canvasPanel {
+  position: relative;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.canvasLabel {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.1rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(4, 7, 14, 0.68);
+  border: 1px solid rgba(74, 243, 200, 0.18);
+}
+
+.sidePanel,
+.sideCollapsed {
+  padding: 1rem;
+  height: fit-content;
+  position: sticky;
+  top: 1rem;
+}
+
+.sideCollapsed {
+  width: 110px;
+}
+
+.loading,
+.metricCard {
+  padding: 1rem;
+  margin-top: 0.8rem;
+}
+
+.metricCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.metricCard strong {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.5rem;
+}
+
+.probabilityWrap {
+  margin-top: 0.8rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.probabilityHeader,
+.mixerRow {
+  display: grid;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.probabilityHeader {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 0.7rem;
+  font-family: 'Space Mono', monospace;
+  color: var(--muted);
+}
+
+.probabilityBar {
+  display: flex;
+  overflow: hidden;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.leftFill {
+  background: linear-gradient(90deg, rgba(121, 165, 255, 0.8), rgba(121, 165, 255, 0.45));
+}
+
+.rightFill {
+  background: linear-gradient(90deg, rgba(255, 183, 102, 0.45), rgba(255, 183, 102, 0.8));
+}
+
+.mixer {
+  margin-top: 1rem;
+}
+
+.mixer h3 {
+  margin: 0 0 0.8rem;
+}
+
+.mixerRow {
+  grid-template-columns: 72px minmax(0, 1fr) 110px;
+  margin-bottom: 0.75rem;
+}
+
+.layerOn,
+.layerOff {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  font-family: 'Space Mono', monospace;
+}
+
+.layerOn {
+  background: rgba(74, 243, 200, 0.16);
+  color: var(--accent);
+}
+
+.layerOff {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+}
+
+.secondaryTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding: 1rem;
+}
+
+.activeCompareTab {
+  background: rgba(74, 243, 200, 0.18);
+  color: var(--accent);
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 980px) {
+  .mainLayout,
+  .compareLayout,
+  .compareCanvasWrap,
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidePanel,
+  .sideCollapsed {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .selection,
+  .playPhase {
+    padding: 1rem;
+  }
+
+  .topBar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
